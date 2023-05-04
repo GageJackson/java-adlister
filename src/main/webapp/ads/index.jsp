@@ -13,7 +13,7 @@
 </head>
 <body>
 <h1>Displaying all ads</h1>
-<c:forEach var="ad" items="${adView}">
+<c:forEach var="ad" items="${ads}">
     <div class="ad">
         <h4>${ad.title}</h4>
         <p>${ad.description}</p>
