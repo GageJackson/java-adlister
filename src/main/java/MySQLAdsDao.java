@@ -1,9 +1,11 @@
 import java.sql.*;
+import com.mysql.cj.jdbc.Driver;
 import java.util.ArrayList;
 import java.util.List;
 
 public class MySQLAdsDao implements Ads {
     private Connection getConnection() throws RuntimeException, SQLException {
+        DriverManager.registerDriver(new Driver());
         Config config = new Config();
         return DriverManager.getConnection(
                     config.getUrl(),
@@ -23,7 +25,7 @@ public class MySQLAdsDao implements Ads {
         ResultSet rs = statement.executeQuery(selectQuery);
 
         while (rs.next()){
-            ads.add(new Ad(rs.getLong("id"), rs.getLong("userId"), rs.getString("title"), rs.getString("description")));
+            ads.add(new Ad(rs.getLong("id"), rs.getLong("user_id"), rs.getString("title"), rs.getString("description")));
         }
 
         return ads;
